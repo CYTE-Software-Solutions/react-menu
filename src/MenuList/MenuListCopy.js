@@ -2,7 +2,8 @@ import './MenuList.css';
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
+import logo from '../images/logo.png';
 
 /*
 class MenuList extends React.Component {
@@ -79,7 +80,7 @@ export default function MenuListCopy() {
     };
 
     setIsLoading(true);
-    axios.get('http://18.194.218.31:1337/api/subcategories?filters[category][name][$eq]=' + category + '&populate=menus', config)
+    axios.get('http://speisekarte.bellevue-alm.at/strapi/api/subcategories?filters[category][name][$eq]=' + category + '&populate=menus', config)
       .then(response => response.data)
       .then((data) => {
         setMenu(data)
@@ -97,21 +98,45 @@ export default function MenuListCopy() {
 
   return (
     <div className="App">
-      <h2>{category}</h2>
-
-
-
-      {menu.data.map(function (category, i) {
-        return <div>
-          <h2>
-            {category.attributes.name}
-          </h2>
-
-          {category.attributes.menus.data.map(menu => (<div>{menu.attributes.Name}, {menu.attributes.allergenes}, {menu.attributes.price}</div>))}
-
+      <div className='col-2 mx-auto'>
+      <Link to={"/"}>
+        <img src={logo} alt="Logo" className='img-fluid img-thumbnail border-0'/>
+        </Link>
         </div>
-      })}
+      <h1>{category}</h1>
 
+
+      <div className='container'>
+        {menu.data.map(function (category, i) {
+          return <div className='card'>
+            <div className='card-header'>
+              <h3>
+                {category.attributes.name}
+              </h3>
+            </div>
+
+            <div className='card-body'>
+              {category.attributes.menus.data.map(menu => (<div className='container pt-1'>
+                <div className='row'>
+                  <div className='col-9'>
+                    <h5><strong>{menu.attributes.Name}</strong> {menu.attributes.allergenes}</h5>
+                  </div>
+                  <div className='col-3'>
+                    <h5>{menu.attributes.price.toFixed(2) + " €"}</h5>
+                  </div>
+                </div>
+                <div className='row'>
+                <div className='col-8'>
+                  <p className='ml-auto'>{menu.attributes.description}</p>
+                  </div>
+                  <div className='col-2'>
+                  </div>
+                </div>
+              </div>))}
+            </div>
+          </div>
+        })}
+      </div>
 
     </div>
   );

@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MenuList from './MenuList/MenuList';
 import MenuListCopy from './MenuList/MenuListCopy';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
