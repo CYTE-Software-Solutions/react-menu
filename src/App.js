@@ -18,7 +18,7 @@ class App extends React.Component {
       const config = {
         headers: { Authorization: `Bearer e411aef8962333f7bbab6aa568805076194d6da56e3afecdae48a33287a00e6583930f33353dfa199595ab8e4fe57367a01c9f84e2ea6743c438011607510db63d9037e0c99c72c6d1d3072043687b3e9fa0b089d06e35bb031929101c501e5face6ebc7af31973a0eaf7b24f57db2133f66a456f07ad5d824d9eb93cb832a80` }
       };
-      const response = await axios.get('http://speisekarte.bellevue-alm.at/strapi/api/categories', config);
+      const response = await axios.get('https://speisekarte.bellevue-alm.at/strapi/api/categories', config);
       console.log(response.data);
       this.setState({ menus: response.data.data });
     } catch (error) {

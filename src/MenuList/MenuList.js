@@ -18,7 +18,7 @@ export default function MenuList() {
     };
 
     setIsLoading(true);
-    axios.get('http://speisekarte.bellevue-alm.at/strapi/api/subcategories?filters[category][name][$eq]=' + category + '&populate[menus][sort][0]=order:asc&sort=order:asc', config)
+    axios.get('https://speisekarte.bellevue-alm.at/strapi/api/subcategories?filters[category][name][$eq]=' + category + '&populate[menus][sort][0]=order:asc&sort=order:asc', config)
       .then(response => response.data)
       .then((data) => {
         setMenu(data)
