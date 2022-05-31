@@ -80,7 +80,7 @@ export default function MenuListCopy() {
     };
 
     setIsLoading(true);
-    axios.get('http://speisekarte.bellevue-alm.at/strapi/api/subcategories?filters[category][name][$eq]=' + category + '&populate=menus', config)
+    axios.get('http://speisekarte.bellevue-alm.at/strapi/api/subcategories?filters[category][name][$eq]=' + category + '&populate[menus][sort][0]=order:asc&sort=order:asc', config)
       .then(response => response.data)
       .then((data) => {
         setMenu(data)
@@ -126,10 +126,10 @@ export default function MenuListCopy() {
                   </div>
                 </div>
                 <div className='row'>
-                <div className='col-8'>
+                <div className='col-9'>
                   <p className='ml-auto'>{menu.attributes.description}</p>
                   </div>
-                  <div className='col-2'>
+                  <div className='col-3'>
                   </div>
                 </div>
               </div>))}
