@@ -2,7 +2,7 @@ import './App.css';
 
 import React from 'react';
 import axios from 'axios';
-import { Outlet, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import logo from './images/logo.png';
 
 class App extends React.Component {
@@ -27,7 +27,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { error, restaurant } = this.state;
+    const { error, menus } = this.state;
 
     // Print errors if any
     if (error) {
@@ -41,12 +41,12 @@ class App extends React.Component {
         </div>
         <h1>Speisekarte</h1>
         {
-          this.state.menus.map(restaurant => (
+          menus.map(category => (
             <div className='container pt-5'>
-              <Link to={"/" + restaurant.attributes.name}>
+              <Link to={"/" + category.attributes.name}>
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">{restaurant.attributes.name}</h5>
+                  <h5 className="card-title">{category.attributes.name}</h5>
                 </div>
               </div>
               </Link>
