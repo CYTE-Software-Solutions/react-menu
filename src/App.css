@@ -1,10 +1,18 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(/public/font/Proxima\ Nova\ Font.otf);
+}
 .App {
+  font-family: myFirstFont;
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.main-color {
+  color: #1A652D;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,4 +43,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+.menu-item{
+ 
 }
