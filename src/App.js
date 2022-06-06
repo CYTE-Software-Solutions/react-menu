@@ -1,5 +1,6 @@
 import './App.css';
 
+import ReactGA from "react-ga4";
 import React from 'react';
 import axios from 'axios';
 import logo from './images/logo.png';
@@ -26,6 +27,8 @@ class App extends React.Component {
 
   // Fetch your restaurants immediately after the component is mounted
   componentDidMount = async () => {
+    ReactGA.initialize("G-TBGV44HPM5");
+    ReactGA.send({ hitType: "pageview", page: this.state.category });
     this.getEvents();
     try {
       const config = {
@@ -104,11 +107,17 @@ class App extends React.Component {
       <Container className='mt-3' >
         <h1 className='main-color mb-3 fw-bolder'>{this.state.category}</h1>
        {this.state.menu.map((menus) =>
-    <Container className='mb-4 menu-item'>
+    <Container className='mb-5 menu-item'>
         
-        <h3 className='main-color mb-3 fw-bold'>
-        {menus.attributes.name}
-        </h3>
+        {(() => {if (menus.attributes.menus.data.length === 0) {
+          return <h2 className='main-color mb-0 mt-5 fw-bolder'>
+          {menus.attributes.name}
+          </h2>
+        } else {
+          return <h3 className='main-color mb-3 fw-bold'>
+          {menus.attributes.name}
+          </h3>
+        }})()}
        
         {menus.attributes.menus.data.map(menu => (<div className='container pt-1'>
             <div className='row mb-1'>
