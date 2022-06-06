@@ -10,6 +10,7 @@ import {
   Container,
   Nav,
   NavDropdown,
+  Row,
 } from 'react-bootstrap';
 
 
@@ -98,6 +99,7 @@ class App extends React.Component {
             <Nav.Link onClick={() => {this.setCategory(category.attributes.name)}}>{category.attributes.name}</Nav.Link>
           
           ))}
+          <Nav.Link href='https://www.bellevue-alm.at'>Website</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
@@ -122,7 +124,7 @@ class App extends React.Component {
         {menus.attributes.menus.data.map(menu => (<div className='container pt-1'>
             <div className='row mb-1'>
               <div className='col-9'>
-                <h5 className='main-color text-start'><strong>{menu.attributes.Name}</strong>  {menu.attributes.allergenes}</h5>
+                <h5 className='main-color text-start' ><strong>{menu.attributes.Name}</strong>  <span className="fs-6 fw-light">{menu.attributes.allergenes}</span></h5>
                
                 <p className='text-start'>{menu.attributes.description}</p>
               </div>
@@ -143,7 +145,16 @@ class App extends React.Component {
        
         
 
-
+       <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <Row>
+      <a href='https://www.cyte.at'><p>Made with by CYTE</p></a>
+      </Row>
+      <Row>
+      <small>&copy; 2022 All rights reserved</small>
+      </Row>
+    </div>
+  </footer>
       </div>
     );
   }
