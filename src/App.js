@@ -26,25 +26,26 @@ class App extends React.Component {
     button: "test"
   };
   
+          
 
   // Fetch your restaurants immediately after the component is mounted
   componentDidMount = async () => {
-    ReactGA.initialize("G-TBGV44HPM5");
-    ReactGA.send({ hitType: "pageview", page: "/"+this.state.category });
+  ReactGA.initialize("G-TBGV44HPM5");
     this.getEvents();
     try {
       const config = {
         headers: { Authorization: `Bearer e411aef8962333f7bbab6aa568805076194d6da56e3afecdae48a33287a00e6583930f33353dfa199595ab8e4fe57367a01c9f84e2ea6743c438011607510db63d9037e0c99c72c6d1d3072043687b3e9fa0b089d06e35bb031929101c501e5face6ebc7af31973a0eaf7b24f57db2133f66a456f07ad5d824d9eb93cb832a80` }
       };
       const response = await axios.get('https://speisekarte.bellevue-alm.at/strapi/api/categories', config);
-      console.log(response.data);
+      //console.log(response.data);
       this.setState({ menus: response.data.data });
     } catch (error) {
       this.setState({ error });
     }
   };
   getEvents = () => {
-        
+    ReactGA.send({ hitType: "pageview", page: "/"+this.state.category });
+    console.log(this.state.category)
     const config = {
       headers: { Authorization: `Bearer e411aef8962333f7bbab6aa568805076194d6da56e3afecdae48a33287a00e6583930f33353dfa199595ab8e4fe57367a01c9f84e2ea6743c438011607510db63d9037e0c99c72c6d1d3072043687b3e9fa0b089d06e35bb031929101c501e5face6ebc7af31973a0eaf7b24f57db2133f66a456f07ad5d824d9eb93cb832a80` }
     };
@@ -114,7 +115,7 @@ class App extends React.Component {
           {menus.attributes.name}
           </h2>
         } else {
-          return <div class="divider"><span></span><span>{menus.attributes.name}</span><span></span></div>
+          return <div className="divider"><span></span><span>{menus.attributes.name}</span><span></span></div>
         }})()}
        
         {menus.attributes.menus.data.map(menu => (<div className='container pt-1'>
@@ -141,8 +142,8 @@ class App extends React.Component {
        
         
 
-       <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-    <div class="container text-center">
+       <footer id="sticky-footer" className="flex-shrink-0 py-4 bg-dark text-white-50">
+    <div className="container text-center">
       <Row>
       <a href='https://www.cyte.at' className='text-decoration-none text-white' color='white'><p>Made with <span><img src={heart} height='15px' style={{filter: "invert(30%) sepia(100%) saturate(1757%) hue-rotate(343deg) brightness(99%) contrast(108%)"}}></img></span> by CYTE</p></a>
       </Row>
