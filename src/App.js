@@ -30,7 +30,7 @@ class App extends React.Component {
   // Fetch your restaurants immediately after the component is mounted
   componentDidMount = async () => {
     ReactGA.initialize("G-TBGV44HPM5");
-    ReactGA.send({ hitType: "pageview", page: this.state.category });
+    ReactGA.send({ hitType: "pageview", page: "/"+this.state.category });
     this.getEvents();
     try {
       const config = {
