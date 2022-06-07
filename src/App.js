@@ -5,6 +5,7 @@ import React from 'react';
 import axios from 'axios';
 import logo from './images/logo.png';
 import bild from './images/Bellevue.jpeg'
+import heart from './images/heart-regular.svg';
 import {
   Navbar,
   Container,
@@ -55,12 +56,9 @@ class App extends React.Component {
         this.setState({
             menu: data.data
         })
-        console.log(data.data)
-        
       });
   }
   setCategory = async (category) =>{
-    console.log("KLICK");
     await this.setState({
       category: category
 
@@ -116,20 +114,18 @@ class App extends React.Component {
           {menus.attributes.name}
           </h2>
         } else {
-          return <h3 className='main-color mb-3 fw-bold'>
-          {menus.attributes.name}
-          </h3>
+          return <div class="divider"><span></span><span>{menus.attributes.name}</span><span></span></div>
         }})()}
        
         {menus.attributes.menus.data.map(menu => (<div className='container pt-1'>
             <div className='row mb-1'>
               <div className='col-9'>
-                <h5 className='main-color text-start' ><strong>{menu.attributes.Name}</strong>  <span className="fs-6 fw-light">{menu.attributes.allergenes}</span></h5>
+                <h5 className='menu-color text-start' ><strong>{menu.attributes.Name}</strong>  <span className="fs-6 fw-light">{menu.attributes.allergenes}</span></h5>
                
-                <p className='text-start'>{menu.attributes.description}</p>
+                <p className='text-start description-color'>{menu.attributes.description}</p>
               </div>
               <div className='col-3'>
-                <h6>{menu.attributes.price.toFixed(2) + " €"}</h6>
+                <h6 className='price-color'>{menu.attributes.price.toFixed(2) + " €"}</h6>
               </div>
             </div>
            
@@ -148,10 +144,10 @@ class App extends React.Component {
        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
     <div class="container text-center">
       <Row>
-      <a href='https://www.cyte.at'><p>Made with by CYTE</p></a>
+      <a href='https://www.cyte.at' className='text-decoration-none text-white' color='white'><p>Made with <span><img src={heart} height='15px' style={{filter: "invert(30%) sepia(100%) saturate(1757%) hue-rotate(343deg) brightness(99%) contrast(108%)"}}></img></span> by CYTE</p></a>
       </Row>
       <Row>
-      <small>&copy; 2022 All rights reserved</small>
+      <small>&copy; {new Date().getFullYear()} All rights reserved</small>
       </Row>
     </div>
   </footer>
